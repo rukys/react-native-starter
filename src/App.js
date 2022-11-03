@@ -38,9 +38,9 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
-          <Router />
-        </NavigationContainer>
+      <NavigationContainer>
+        <Router />
+      </NavigationContainer>
       <FlashMessage position="top" />
     </QueryClientProvider>
   );
