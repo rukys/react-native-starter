@@ -4,14 +4,13 @@ React Native Starter Mobile Application based on React Native Framework. Built w
 
 ## Features
 
-- [Axios](https://github.com/axios/axios)
-- [React Hook Form](https://react-hook-form.com)
-- [React Query](https://github.com/tanstack/query)
 - [Zustand](https://github.com/pmndrs/zustand)
-- [React Native Config](https://github.com/luggit/react-native-config)
-- [React Native Splash Screen](https://github.com/crazycodeboy/react-native-splash-screen)
+- [React Query](https://github.com/tanstack/query)
+- [React Hook Form](https://react-hook-form.com)
 - [React Native SVG](https://github.com/software-mansion/react-native-svg)
+- [React Native Config](https://github.com/luggit/react-native-config)
 - [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
+- [React Native Splash Screen](https://github.com/crazycodeboy/react-native-splash-screen)
 
 ## Installation
 
