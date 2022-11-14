@@ -5,16 +5,20 @@ React Native Starter Mobile Application based on React Native Framework. Built w
 ## Features
 
 - [Zustand](https://github.com/pmndrs/zustand)
+- [Tailwind](https://github.com/vadimdemedes/tailwind-rn)
 - [React Query](https://github.com/tanstack/query)
+- [Async Storage](https://react-native-async-storage.github.io/async-storage/docs/install/)
 - [React Hook Form](https://react-hook-form.com)
+- [React Navigation v6](https://reactnavigation.org/docs/getting-started)
 - [React Native SVG](https://github.com/software-mansion/react-native-svg)
 - [React Native Config](https://github.com/luggit/react-native-config)
 - [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
 - [React Native Splash Screen](https://github.com/crazycodeboy/react-native-splash-screen)
+- [React Native Flash Message](https://github.com/lucasferreira/react-native-flash-message)
 
 ## Installation
 
-First of all, install npm package dependencies
+First of all, install npm package dependencies:
 
 ```
 npm install
@@ -24,6 +28,20 @@ or if using yarn:
 
 ```
 yarn install
+```
+
+## Run Tailwind
+
+Below command is used for running server tailwind in development mode:
+
+```
+yarn dev:tailwind
+```
+
+And If you want to build server tailwind use below command:
+
+```
+yarn build:tailwind
 ```
 
 ## Run Application [Android]

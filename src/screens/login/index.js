@@ -1,21 +1,16 @@
 import React from 'react';
 import {useMutation} from 'react-query';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
+import {useTailwind} from 'tailwind-rn';
 import {useForm, Controller} from 'react-hook-form';
 import {login} from '../../api/auth';
 import {Gap} from '../../components';
 import {authStore} from '../../store';
 import {showMessage} from 'react-native-flash-message';
-import {Colors} from '../../utils/colors';
 
 const LoginScreen = ({navigation}) => {
+  const tw = useTailwind();
   const {setAuthStore} = authStore();
   const {
     control,
@@ -59,14 +54,14 @@ const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.page}>
+    <View style={tw('flex flex-1 bg-white p-6 justify-center')}>
       <Gap height={32} />
-      <View style={styles.containerForm}>
-        <Text style={styles.textTitle}>React</Text>
-        <Text style={styles.textDesc}>Native</Text>
-        <View style={styles.lineDash} />
+      <View style={tw('rounded-lg bg-sky-400 p-4')}>
+        <Text style={tw('text-2xl')}>React</Text>
+        <Text style={tw('text-2xl mb-2')}>Native</Text>
+        <View style={tw('h-0.5 bg-black')} />
         <Gap height={24} />
-        <Text style={styles.textLabel}>Username</Text>
+        <Text style={tw('')}>Username</Text>
         <Controller
           control={control}
           rules={{
@@ -74,7 +69,7 @@ const LoginScreen = ({navigation}) => {
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <TextInput
-              style={styles.input}
+              style={tw('border border-black rounded-lg mt-2 p-2')}
               onBlur={onBlur}
               onChangeText={onChange}
               placeholder={'Username'}
@@ -84,10 +79,10 @@ const LoginScreen = ({navigation}) => {
           name="username"
         />
         {errors.username && (
-          <Text style={styles.textLabel}>This is required.</Text>
+          <Text style={tw('text-red-500')}>This is required.</Text>
         )}
         <Gap height={16} />
-        <Text style={styles.textLabel}>Password</Text>
+        <Text style={tw('')}>Password</Text>
         <Controller
           control={control}
           rules={{
@@ -95,7 +90,7 @@ const LoginScreen = ({navigation}) => {
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <TextInput
-              style={styles.input}
+              style={tw('border border-black rounded-lg mt-2 p-2')}
               onBlur={onBlur}
               onChangeText={onChange}
               placeholder={'Password'}
@@ -106,99 +101,29 @@ const LoginScreen = ({navigation}) => {
           name="password"
         />
         {errors.password && (
-          <Text style={styles.textLabel}>This is required.</Text>
+          <Text style={tw('text-red-500')}>This is required.</Text>
         )}
         <Gap height={16} />
-        <TouchableOpacity style={styles.containerForgot}>
-          <Text style={styles.textForgot}>Forgot Password ?</Text>
+        <TouchableOpacity style={tw('items-end')}>
+          <Text>Forgot Password ?</Text>
         </TouchableOpacity>
         <Gap height={24} />
         <TouchableOpacity
-          style={styles.button}
+          style={tw('items-center bg-white rounded-lg h-12 justify-center')}
           onPress={handleSubmit(onSubmit)}>
-          <Text style={styles.textButton}>Login</Text>
+          <Text style={tw('text-black text-sm')}>Login</Text>
         </TouchableOpacity>
       </View>
       <Gap height={16} />
-      <Text style={styles.textVersion}>v.0.0.1</Text>
+      <Text style={tw('self-center')}>v.0.0.1</Text>
       <Gap height={16} />
       <Spinner
         visible={mutationAuth.isLoading}
         textContent={'Loading...'}
-        textStyle={styles.textSpinner}
+        textStyle={tw('text-white')}
       />
     </View>
   );
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  containerLogo: {
-    borderWidth: 1,
-    width: '40%',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  containerForm: {
-    backgroundColor: Colors.primary,
-    borderRadius: 16,
-    padding: 16,
-  },
-  textTitle: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 25,
-  },
-  textDesc: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 25,
-    marginTop: -8,
-  },
-  lineDash: {
-    height: 1,
-    backgroundColor: Colors.black,
-  },
-  input: {
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginTop: 8,
-    height: 45,
-  },
-  textForgot: {
-    fontFamily: 'Poppins-Regular',
-    alignSelf: 'flex-end',
-  },
-  containerForgot: {},
-  button: {
-    borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.white,
-    height: 55,
-  },
-  textLabel: {
-    fontFamily: 'Poppins-Regular',
-  },
-  textButton: {
-    color: 'black',
-    fontFamily: 'Poppins-Regular',
-    // fontFamily: 'Poppins-Medium',
-    // fontFamily: 'Poppins-Light',
-  },
-  textVersion: {
-    fontFamily: 'Poppins-Light',
-    alignSelf: 'center',
-  },
-  textSpinner: {
-    color: Colors.white,
-  },
-});

@@ -1,18 +1,12 @@
 import React, {useEffect} from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  SafeAreaView,
-} from 'react-native';
+import {Image, Text, TouchableOpacity, View, SafeAreaView} from 'react-native';
 import {ImgReact} from '../../assets/images';
-import {Colors} from '../../utils/colors';
 import {Gap} from '../../components';
 import {authStore} from '../../store';
+import {useTailwind} from 'tailwind-rn';
 
 const GetstartedScreen = ({navigation}) => {
+  const tw = useTailwind();
   const {token} = authStore();
 
   const onGetStarted = () => {
@@ -25,14 +19,24 @@ const GetstartedScreen = ({navigation}) => {
     }
   }, [navigation, token]);
   return (
-    <SafeAreaView style={styles.page}>
-      <View style={styles.content}>
-        <Image source={ImgReact} style={styles.image} resizeMode="contain" />
-        <Text style={styles.title}>Welcome</Text>
-        <Text style={styles.desc}>React Native Starter</Text>
+    <SafeAreaView style={tw('flex flex-1 bg-white')}>
+      <View style={tw('flex-1 justify-center items-center')}>
+        <Image
+          source={ImgReact}
+          style={tw('items-center h-48 w-48')}
+          resizeMode="contain"
+        />
+        <Text style={tw('font-normal text-xl')}>Welcome</Text>
+        <Text style={tw('font-light text-sm text-neutral-500')}>
+          React Native Starter
+        </Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={onGetStarted}>
-        <Text style={styles.buttontText}>Get Started</Text>
+      <TouchableOpacity
+        style={tw(
+          'h-12 bg-sky-400 mx-4 rounded-lg justify-center items-center',
+        )}
+        onPress={onGetStarted}>
+        <Text style={tw('text-white text-base')}>Get Started</Text>
       </TouchableOpacity>
       <Gap height={20} />
     </SafeAreaView>
@@ -40,62 +44,3 @@ const GetstartedScreen = ({navigation}) => {
 };
 
 export default GetstartedScreen;
-
-const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    backgroundColor: Colors.grey,
-  },
-  language: {
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.primary,
-    height: 35,
-    width: 35,
-    borderRadius: 35 / 2,
-    marginTop: 20,
-    marginRight: 20,
-  },
-  gap: {
-    flex: 1,
-  },
-  image: {
-    alignSelf: 'center',
-    height: 200,
-    width: 200,
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  contentText: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 25,
-    fontFamily: 'Poppins-Medium',
-    textAlign: 'center',
-  },
-  desc: {
-    fontSize: 14,
-    fontFamily: 'Poppins-Light',
-    textAlign: 'center',
-  },
-  button: {
-    height: 45,
-    backgroundColor: Colors.primary,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 20,
-  },
-  buttontText: {
-    color: Colors.white,
-    fontSize: 14,
-    fontFamily: 'Poppins-Regular',
-  },
-});

@@ -3,6 +3,8 @@ import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider, setLogger} from 'react-query';
 import FlashMessage from 'react-native-flash-message';
+import {TailwindProvider} from 'tailwind-rn';
+import utilities from '../tailwind.json';
 import {apiStore} from './store';
 import Router from './router';
 
@@ -39,7 +41,9 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Router />
+        <TailwindProvider utilities={utilities}>
+          <Router />
+        </TailwindProvider>
       </NavigationContainer>
       <FlashMessage position="top" />
     </QueryClientProvider>

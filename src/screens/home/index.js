@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {useTailwind} from 'tailwind-rn';
 import {userStore, authStore} from '../../store';
-import {Colors} from '../../utils/colors';
 import {Gap} from '../../components';
 import useProfile from '../../hooks/use-profile';
 
 const HomeScreen = ({navigation}) => {
+  const tw = useTailwind();
   const {token, token_refresh, isAuthenticated, clearAuthStore} = authStore();
   const {user = {}, clearUser} = userStore();
   useProfile();
@@ -23,24 +18,26 @@ const HomeScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.page}>
+    <View style={tw('flex flex-1 p-6')}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text>
-          <Text style={styles.textBold}>isAuthenticated : </Text>
+          <Text style={tw('font-bold')}>isAuthenticated : </Text>
           {isAuthenticated ? 1 : 0}
         </Text>
         <Text>
-          <Text style={styles.textBold}>Token Refresh : </Text>
+          <Text style={tw('font-bold')}>Token Refresh : </Text>
           {token_refresh}
         </Text>
         <Text>
-          <Text style={styles.textBold}>Token : </Text>
+          <Text style={tw('font-bold')}>Token : </Text>
           {token}
         </Text>
         <Gap height={16} />
-        <View style={styles.containerTab}>
+        <View style={tw('flex flex-row')}>
           <TouchableOpacity
-            style={styles.buttonTab}
+            style={tw(
+              'h-10 w-24 rounded-lg bg-sky-400 items-center justify-center',
+            )}
             onPress={() =>
               navigation.navigate('DeliveryScreen', {id: user.id})
             }>
@@ -48,13 +45,19 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
           <Gap width={16} />
           <TouchableOpacity
-            style={styles.buttonTab}
+            style={tw(
+              'h-10 w-24 rounded-lg bg-sky-400 items-center justify-center',
+            )}
             onPress={() => navigation.navigate('ProfileScreen')}>
             <Text>Profile</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.button} onPress={onLogout}>
+      <TouchableOpacity
+        style={tw(
+          'absolute bottom-0 mb-4 bg-sky-400 h-12 w-full justify-center items-center rounded-lg self-center',
+        )}
+        onPress={onLogout}>
         <Text>Log out</Text>
       </TouchableOpacity>
     </View>
@@ -62,35 +65,3 @@ const HomeScreen = ({navigation}) => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    marginHorizontal: 20,
-    marginVertical: 20,
-  },
-  textBold: {
-    fontWeight: 'bold',
-  },
-  button: {
-    borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.primary,
-    height: 55,
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-  },
-  containerTab: {
-    flexDirection: 'row',
-  },
-  buttonTab: {
-    width: 100,
-    height: 45,
-    backgroundColor: Colors.primary,
-    borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

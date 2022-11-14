@@ -32,6 +32,7 @@
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^9.2.0",
     "react-query": "^3.39.2",
+    "tailwind-rn": "^4.2.0",
     "zustand": "^4.1.4"
   },
   "devDependencies": {
@@ -39,11 +40,14 @@
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
     "babel-jest": "^25.1.0",
+    "concurrently": "^7.5.0",
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "postcss": "^8.4.19",
     "react-native-svg-transformer": "^1.0.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "tailwindcss": "^3.2.4"
   },
   "jest": {
     "preset": "react-native"
