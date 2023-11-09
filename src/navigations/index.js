@@ -3,10 +3,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   DeliveryScreen,
-  GetstartedScreen,
   HomeScreen,
   LoginScreen,
   ProfileScreen,
+  SplashScreen,
 } from '../screens';
 // import {BottomNavigator} from '../components';
 
@@ -42,37 +42,18 @@ const Stack = createStackNavigator();
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="GetstartedScreen">
-      <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{headerShown: false}}
-      />
+    <Stack.Navigator
+      initialRouteName="SplashScreen"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen name="DeliveryScreen" component={DeliveryScreen} />
       {/* <Stack.Screen
         name="MainAppScreen"
         component={MainApp}
-        options={{headerShown: false}}
       /> */}
-      <Stack.Screen
-        name="GetstartedScreen"
-        component={GetstartedScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="DeliveryScreen"
-        component={DeliveryScreen}
-        options={{headerShown: true}}
-      />
-      <Stack.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{headerShown: true}}
-      />
     </Stack.Navigator>
   );
 };

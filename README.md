@@ -1,19 +1,18 @@
 # React Native Starter
 
-React Native Starter Mobile Application based on React Native Framework. Built with **React Native 0.63.4**.
+React Native Starter Mobile Application based on React Native Framework. Built with **React Native 0.72.6**.
 
 ## Features
 
 - [Zustand](https://github.com/pmndrs/zustand)
-- [Tailwind](https://github.com/vadimdemedes/tailwind-rn)
 - [React Query](https://github.com/tanstack/query)
+- [TailwindCSS](https://www.nativewind.dev/)
 - [Async Storage](https://react-native-async-storage.github.io/async-storage/docs/install/)
 - [React Hook Form](https://react-hook-form.com)
-- [React Navigation v6](https://reactnavigation.org/docs/getting-started)
+- [React Navigation](https://reactnavigation.org/docs/getting-started)
 - [React Native SVG](https://github.com/software-mansion/react-native-svg)
 - [React Native Config](https://github.com/luggit/react-native-config)
 - [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
-- [React Native Splash Screen](https://github.com/crazycodeboy/react-native-splash-screen)
 - [React Native Flash Message](https://github.com/lucasferreira/react-native-flash-message)
 
 ## Installation
@@ -30,26 +29,12 @@ or if using yarn:
 yarn install
 ```
 
-## Run Tailwind
-
-Below command is used for running server tailwind in development mode:
-
-```
-yarn dev:tailwind
-```
-
-And If you want to build server tailwind use below command:
-
-```
-yarn build:tailwind
-```
-
 ## Run Application [Android]
 
 Below command is used for running metro packager and build and install android debug APK file to device or emulator
 
 ```
-npx react-native run-android
+yarn android
 ```
 
 Or if you want run a stand alone metro packager only, use below command:

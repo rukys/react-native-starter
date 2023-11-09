@@ -1,8 +1,8 @@
-import create from 'zustand';
-import {persist} from 'zustand/middleware';
+import {create} from 'zustand';
+import {persist, createJSONStorage} from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const log = (config) => (set, get, api) =>
+const log = config => (set, get, api) =>
   config(
     (...args) => {
       set(...args);
@@ -15,9 +15,9 @@ const log = (config) => (set, get, api) =>
 const userStore = create(
   log(
     persist(
-      (set) => ({
+      set => ({
         user: {},
-        setUser: (data) => set({user: data}),
+        setUser: data => set({user: data}),
         clearUser: () =>
           set({
             user: {},
@@ -25,7 +25,7 @@ const userStore = create(
       }),
       {
         name: 'user-storage',
-        getStorage: () => AsyncStorage,
+        storage: createJSONStorage(() => AsyncStorage),
       },
     ),
   ),

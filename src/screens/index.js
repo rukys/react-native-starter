@@ -1,13 +1,7 @@
-import GetstartedScreen from './getstarted';
-import HomeScreen from './home';
+import SplashScreen from './splash';
 import LoginScreen from './login';
-import DeliveryScreen from './delivery';
+import HomeScreen from './home';
 import ProfileScreen from './profile';
+import DeliveryScreen from './delivery';
 
-export {
-  GetstartedScreen,
-  HomeScreen,
-  LoginScreen,
-  DeliveryScreen,
-  ProfileScreen,
-};
+export {SplashScreen, LoginScreen, HomeScreen, ProfileScreen, DeliveryScreen};

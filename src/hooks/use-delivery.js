@@ -4,7 +4,7 @@ import {userStore, authStore} from '../store';
 
 export default function useDelivery(params = {}) {
   const {user} = userStore();
-  const getAuthenticated = authStore((state) => state.isAuthenticated);
+  const getAuthenticated = authStore(state => state.isAuthenticated);
 
   const {isLoading, isError, data, error} = useQuery(
     ['delivery', {id: user.id}],

@@ -1,7 +1,7 @@
-import {fetchApi} from '../utils/fetch';
+import {fetchApi} from './_fetch';
 import {apiAuth} from './_root';
 
-export const login = (data) =>
+export const login = data =>
   fetchApi({
     url: apiAuth('Login'),
     method: 'POST',

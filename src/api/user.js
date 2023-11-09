@@ -1,4 +1,4 @@
-import {fetchApi} from '../utils/fetch';
+import {fetchApi} from './_fetch';
 import {apiUser} from './_root';
 
 export const initial = ({queryKey}) => {

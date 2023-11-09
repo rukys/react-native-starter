@@ -1,14 +1,14 @@
-import create from 'zustand';
+import {create} from 'zustand';
 
 //state global tanpa persist
-const apiStore = create((set) => ({
+const apiStore = create(set => ({
   errorServer: {},
-  setErrorServer: (errorServer) => {
+  setErrorServer: errorServer => {
     set({errorServer});
   },
 
   isNetworkError: false,
-  setIsNetworkError: (isNetworkError) => {
+  setIsNetworkError: isNetworkError => {
     set({isNetworkError});
   },
 }));

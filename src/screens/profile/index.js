@@ -1,25 +1,21 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {useTailwind} from 'tailwind-rn';
+import {View, Text} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import useProfile from '../../hooks/use-profile';
 
-const ProfileScreen = () => {
-  const tw = useTailwind();
+export default function ProfileScreen() {
   const {data, isLoading} = useProfile();
   return (
-    <View style={tw('flex flex-1 p-6')}>
+    <View className="flex flex-1 p-6">
       <Text>
-        <Text style={tw('font-bold')}>User : </Text>
+        <Text className="font-bold">User : </Text>
         {JSON.stringify(data)}
       </Text>
       <Spinner
         visible={isLoading}
         textContent={'Loading...'}
-        textStyle={tw('text-black')}
+        textStyle={{color: 'white'}}
       />
     </View>
   );
-};
-
-export default ProfileScreen;
+}

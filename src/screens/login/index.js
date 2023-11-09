@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useMutation} from 'react-query';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {useTailwind} from 'tailwind-rn';
 import {useForm, Controller} from 'react-hook-form';
+import {useNavigation} from '@react-navigation/native';
+import {authStore} from '../../store';
 import {login} from '../../api/auth';
 import {Gap} from '../../components';
-import {authStore} from '../../store';
-import {showMessage} from 'react-native-flash-message';
 
-const LoginScreen = ({navigation}) => {
-  const tw = useTailwind();
+export default function LoginScreen() {
+  const navigation = useNavigation();
   const {setAuthStore} = authStore();
   const {
     control,
@@ -24,8 +24,7 @@ const LoginScreen = ({navigation}) => {
   });
 
   const mutationAuth = useMutation(login);
-
-  const onSubmit = (data) => {
+  const onSubmitLogin = data => {
     const payload = {
       username: data.username,
       password: data.password,
@@ -43,7 +42,7 @@ const LoginScreen = ({navigation}) => {
           navigation.replace('HomeScreen');
         }
       },
-      onError: (err) => {
+      onError: err => {
         showMessage({
           message: 'Gagal Masuk',
           description: `${err?.response?.data?.Message}`,
@@ -54,14 +53,15 @@ const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <View style={tw('flex flex-1 bg-white p-6 justify-center')}>
-      <Gap height={32} />
-      <View style={tw('rounded-lg bg-sky-400 p-4')}>
-        <Text style={tw('text-2xl')}>React</Text>
-        <Text style={tw('text-2xl mb-2')}>Native</Text>
-        <View style={tw('h-0.5 bg-black')} />
+    <View className="flex justify-center flex-1 p-6">
+      <View className="p-4 bg-white rounded-lg">
+        <View className="flex-row justify-center mb-2">
+          <Text className="mr-1 text-2xl">React</Text>
+          <Text className="text-2xl">Native</Text>
+        </View>
+        <View className="h-0.5 bg-black" />
         <Gap height={24} />
-        <Text style={tw('')}>Username</Text>
+        <Text>Username</Text>
         <Controller
           control={control}
           rules={{
@@ -69,7 +69,7 @@ const LoginScreen = ({navigation}) => {
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <TextInput
-              style={tw('border border-black rounded-lg mt-2 p-2')}
+              className="p-2 mt-2 border border-black rounded-lg"
               onBlur={onBlur}
               onChangeText={onChange}
               placeholder={'Username'}
@@ -79,10 +79,10 @@ const LoginScreen = ({navigation}) => {
           name="username"
         />
         {errors.username && (
-          <Text style={tw('text-red-500')}>This is required.</Text>
+          <Text className="text-red-500">This is required.</Text>
         )}
         <Gap height={16} />
-        <Text style={tw('')}>Password</Text>
+        <Text>Password</Text>
         <Controller
           control={control}
           rules={{
@@ -90,7 +90,7 @@ const LoginScreen = ({navigation}) => {
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <TextInput
-              style={tw('border border-black rounded-lg mt-2 p-2')}
+              className="p-2 mt-2 border border-black rounded-lg"
               onBlur={onBlur}
               onChangeText={onChange}
               placeholder={'Password'}
@@ -101,29 +101,25 @@ const LoginScreen = ({navigation}) => {
           name="password"
         />
         {errors.password && (
-          <Text style={tw('text-red-500')}>This is required.</Text>
+          <Text className="text-red-500">This is required.</Text>
         )}
         <Gap height={16} />
-        <TouchableOpacity style={tw('items-end')}>
+        <TouchableOpacity className="items-end">
           <Text>Forgot Password ?</Text>
         </TouchableOpacity>
         <Gap height={24} />
         <TouchableOpacity
-          style={tw('items-center bg-white rounded-lg h-12 justify-center')}
-          onPress={handleSubmit(onSubmit)}>
-          <Text style={tw('text-black text-sm')}>Login</Text>
+          className="items-center justify-center h-12 bg-gray-300 rounded-lg"
+          onPress={handleSubmit(onSubmitLogin)}>
+          <Text className="text-sm text-black">Login</Text>
         </TouchableOpacity>
       </View>
-      <Gap height={16} />
-      <Text style={tw('self-center')}>v.0.0.1</Text>
       <Gap height={16} />
       <Spinner
         visible={mutationAuth.isLoading}
         textContent={'Loading...'}
-        textStyle={tw('text-white')}
+        textStyle={{color: 'white'}}
       />
     </View>
   );
-};
-
-export default LoginScreen;
+}

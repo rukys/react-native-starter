@@ -23,11 +23,12 @@ export const fetchApi = async ({
     Authorization: `Bearer ${token}`,
   };
 
-  console.info(`%c[${method}]%c ${url || `${path}`}`, {
-    params,
-    data,
-    headers: finalHeaders,
-  });
+  console.info(
+    `%c[${method}]%c ${url || `${path}`}`,
+    'background: cornflowerblue; color: white; padding: 0 2px;',
+    'color: cornflowerblue;',
+    {params, data, headers: finalHeaders},
+  );
 
   const response = await axios({
     timeout: API_TIMEOUT,
@@ -41,6 +42,9 @@ export const fetchApi = async ({
 
   console.log(
     `%c[${response.status}]%c[${method}]%c ${url || `${path}`}`,
+    'background: green; color: white; padding: 0 2px;',
+    'background: black; color: white; padding: 0 2px;',
+    'color: green;',
     response.data,
   );
 

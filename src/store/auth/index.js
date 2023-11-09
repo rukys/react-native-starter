@@ -1,8 +1,8 @@
-import create from 'zustand';
-import {persist} from 'zustand/middleware';
+import {create} from 'zustand';
+import {persist, createJSONStorage} from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const log = (config) => (set, get, api) =>
+const log = config => (set, get, api) =>
   config(
     (...args) => {
       set(...args);
@@ -15,19 +15,19 @@ const log = (config) => (set, get, api) =>
 const authStore = create(
   log(
     persist(
-      (set) => ({
+      set => ({
         token: null,
         token_refresh: null,
         username: null,
         isAuthenticated: false,
-        setAuthStore: (data) =>
+        setAuthStore: data =>
           set({
             token: data.token,
             token_refresh: data.tokenRefresh,
             username: data.username,
             isAuthenticated: true,
           }),
-        setNewToken: (data) =>
+        setNewToken: data =>
           set({
             token: data.token,
           }),
@@ -41,14 +41,14 @@ const authStore = create(
       }),
       {
         name: 'auth-storage',
-        getStorage: () => AsyncStorage,
+        storage: createJSONStorage(() => AsyncStorage),
       },
     ),
   ),
 );
 
 // Set initial value from storage
-AsyncStorage.getItem('auth-storage').then((item) => {
+AsyncStorage.getItem('auth-storage').then(item => {
   const data = JSON.parse(item);
   if (data) {
     authStore.setState({
